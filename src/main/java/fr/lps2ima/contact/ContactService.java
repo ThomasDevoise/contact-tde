@@ -25,13 +25,7 @@ public class ContactService {
     		
     	}
     	
-    	 if (dao.findByName(name).isPresent()) {
-    		 
-    	 }
-    	
-    	
-    	Contact contact = new Contact();
-    	contact.setName(name);
+    	Contact contact = dao.findByName(name).orElseThrow(() -> new ContactNotFound("Contact" + name + "found"));
     	dao.remove(contact);
     	
     }
