@@ -32,9 +32,15 @@ public class ContactServiceTest {
         service.addContact("Georges Abitbol");
     }
     
-    @Test
-    public void shouldRemoveContact() throws ContactNotFound {
+    @Test(expected = ContactNotFound.class)
+    public void shouldFailRemoveContact() throws ContactNotFound {
     	service.deleteContact("Thomas Devoise");
+    }
+    
+    @Test
+    public void shouldRemoveContact() throws ContactNotFound, ContactExistException {
+    	service.addContact("Contact001");
+    	service.deleteContact("Contact001");
     }
     
     @Test(expected = IllegalArgumentException.class)
