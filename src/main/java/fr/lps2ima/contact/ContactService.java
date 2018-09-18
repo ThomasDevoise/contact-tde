@@ -22,10 +22,10 @@ public class ContactService {
     public void deleteContact(String name) throws ContactNotFound {
     	if(name == null){
     		throw new IllegalArgumentException("Name should be valid");
-    		
     	}
     	
-    	Contact contact = dao.findByName(name).orElseThrow(() -> new ContactNotFound("Contact" + name + "found"));
+    	Contact contact = dao.findByName(name)//
+    			.orElseThrow(() -> new ContactNotFound("Contact " + name + " found"));
     	dao.remove(contact);
     	
     }
